@@ -7,14 +7,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 95, 14, 233)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Page'),
@@ -32,14 +32,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,11 +39,35 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
         ),
-        body: Center(
-          child: Container(
-              width: 100,
-              height: 100,
-              child: Image.asset('assets/images/imgone.webp')),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text(
+              'Hii',
+              style: TextStyle(fontSize: 25),
+            ),
+            const Text(
+              'Hii',
+              style: TextStyle(fontSize: 25),
+            ),
+            const Text(
+              'Hii',
+              style: TextStyle(fontSize: 25),
+            ),
+            const Text(
+              'Hii',
+              style: TextStyle(fontSize: 25),
+            ),
+            const Text(
+              'Hii',
+              style: TextStyle(fontSize: 25),
+            ),
+            Center(child: InkWell(
+              onTap: () {
+                print('Tapped');
+              },
+            ))
+          ],
         ));
   }
 }
