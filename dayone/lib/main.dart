@@ -1,73 +1,33 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(FlutterApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class FlutterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 95, 14, 233)),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Page'),
+      title: 'Flutter App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: DashBoardScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class DashBoardScreen extends StatelessWidget {
+  const DashBoardScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(Object context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
-        ),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Text(
-              'Hii',
-              style: TextStyle(fontSize: 25),
-            ),
-            const Text(
-              'Hii',
-              style: TextStyle(fontSize: 25),
-            ),
-            const Text(
-              'Hii',
-              style: TextStyle(fontSize: 25),
-            ),
-            const Text(
-              'Hii',
-              style: TextStyle(fontSize: 25),
-            ),
-            const Text(
-              'Hii',
-              style: TextStyle(fontSize: 25),
-            ),
-            Center(child: InkWell(
-              onTap: () {
-                print('Tapped');
-              },
-            ))
-          ],
-        ));
+      appBar: AppBar(
+        title: Text("Dashboard"),
+      ),
+      body: Container(
+        color: Colors.amber,
+      ),
+    );
   }
 }
