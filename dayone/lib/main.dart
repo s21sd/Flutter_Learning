@@ -12,7 +12,11 @@ class FlutterApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter App',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+          textTheme: TextTheme(
+            headlineLarge: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+          )),
       home: const DashBoardScreen(),
     );
   }
@@ -24,28 +28,23 @@ class DashBoardScreen extends StatelessWidget {
   @override
   Widget build(Object context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Dashboard"),
-      ),
-      body: Container(
-        color: Colors.amber,
-        width: double.infinity,
-        height: double.infinity,
-        child: Center(
-          child: Container(
-            width: 200,
-            height: 200,
-            decoration: BoxDecoration(
-              color: Colors.blueAccent.shade400,
-              border: Border.all(width: 2, color: Colors.black),
-              boxShadow: const [
-                BoxShadow(blurRadius: 51, spreadRadius: 7, color: Colors.white)
-              ],
-              shape: BoxShape.circle,
+        appBar: AppBar(
+          title: const Text("Dashboard"),
+          centerTitle: true,
+          backgroundColor: Colors.amber,
+        ),
+        body: Center(
+          child: Card(
+            elevation: 12,
+            shadowColor: Colors.amber,
+            child: Padding(
+              padding: const EdgeInsets.all(11),
+              child: Text(
+                'Sunny',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
