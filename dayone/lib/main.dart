@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const FlutterApp());
@@ -28,52 +29,36 @@ class DashBoardScreen extends StatelessWidget {
 
   @override
   Widget build(Object context) {
+    var time = DateTime.now();
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Dashboard"),
-          centerTitle: true,
-          backgroundColor: Colors.amber,
+      appBar: AppBar(
+        title: const Text("Dashboard"),
+        centerTitle: true,
+        backgroundColor: Colors.amber,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Select Date :',
+              style: TextStyle(fontSize: 25),
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  DateTime? datePicked = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2021),
+                      lastDate: DateTime(2025));
+                  if (datePicked != null) {
+                    Text('Date selected : ${datePicked.day}');
+                  }
+                },
+                child: Text('Show'))
+          ],
         ),
-        body: Center(
-            child: SizedBox(
-          width: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(11),
-                      borderSide:
-                          const BorderSide(color: Colors.deepOrange, width: 2),
-                    ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(11),
-                        borderSide:
-                            const BorderSide(color: Colors.deepOrange))),
-              ),
-              Container(
-                height: 11,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(11),
-                      borderSide:
-                          const BorderSide(color: Colors.deepOrange, width: 2),
-                    ),
-                    suffixText: "Username exists",
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.remove_red_eye),
-                      onPressed: () {},
-                    ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(11),
-                        borderSide:
-                            const BorderSide(color: Colors.deepOrange))),
-              ),
-            ],
-          ),
-        )));
+      ),
+    );
   }
 }
