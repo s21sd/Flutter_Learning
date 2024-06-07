@@ -28,7 +28,7 @@ class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({super.key});
 
   @override
-  Widget build(Object context) {
+  Widget build(BuildContext context) {
     var time = DateTime.now();
     return Scaffold(
       appBar: AppBar(
@@ -40,7 +40,7 @@ class DashBoardScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Select Date :',
               style: TextStyle(fontSize: 25),
             ),
@@ -52,10 +52,21 @@ class DashBoardScreen extends StatelessWidget {
                       firstDate: DateTime(2021),
                       lastDate: DateTime(2025));
                   if (datePicked != null) {
-                    Text('Date selected : ${datePicked.day}');
+                    print('Date selected : ${datePicked.day}');
                   }
                 },
-                child: Text('Show'))
+                child: Text('Show')),
+            ElevatedButton(
+                onPressed: () async {
+                  TimeOfDay? pickedTime = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.now(),
+                      initialEntryMode: TimePickerEntryMode.input);
+                  if (pickedTime != null) {
+                    print("Time Selected: ${pickedTime.hour}");
+                  }
+                },
+                child: Text('select Time'))
           ],
         ),
       ),
