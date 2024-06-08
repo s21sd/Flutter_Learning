@@ -29,47 +29,71 @@ class DashBoardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var time = DateTime.now();
+    var arrColors = [
+      Colors.red,
+      Colors.black,
+      Colors.blue,
+      Colors.amber,
+      Colors.orange,
+      Colors.pink,
+      Colors.purple
+    ];
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Dashboard"),
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Select Date :',
-              style: TextStyle(fontSize: 25),
-            ),
-            ElevatedButton(
-                onPressed: () async {
-                  DateTime? datePicked = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2021),
-                      lastDate: DateTime(2025));
-                  if (datePicked != null) {
-                    print('Date selected : ${datePicked.day}');
-                  }
-                },
-                child: Text('Show')),
-            ElevatedButton(
-                onPressed: () async {
-                  TimeOfDay? pickedTime = await showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.now(),
-                      initialEntryMode: TimePickerEntryMode.input);
-                  if (pickedTime != null) {
-                    print("Time Selected: ${pickedTime.hour}");
-                  }
-                },
-                child: Text('select Time'))
-          ],
+        appBar: AppBar(
+          title: const Text("Dashboard"),
+          centerTitle: true,
+          backgroundColor: Colors.amber,
         ),
-      ),
-    );
+        body: Container(
+          child: Column(
+            children: [CatItems()],
+          ),
+        ));
+  }
+}
+
+class CatItems extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+        flex: 2,
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              child: GridView.count(
+                crossAxisCount: 3,
+                mainAxisSpacing: 11,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(11),
+                        color: Colors.amber),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(11),
+                        color: Colors.amber),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(11),
+                        color: Colors.amber),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(11),
+                        color: Colors.amber),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(11),
+                        color: Colors.amber),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }
