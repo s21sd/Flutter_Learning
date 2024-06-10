@@ -1,3 +1,4 @@
+import 'package:dayone/IntroPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -19,81 +20,73 @@ class FlutterApp extends StatelessWidget {
           textTheme: const TextTheme(
             headlineLarge: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
           )),
-      home: const DashBoardScreen(),
+      home: Intropage(),
     );
   }
 }
 
-class DashBoardScreen extends StatelessWidget {
+class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    var arrColors = [
-      Colors.red,
-      Colors.black,
-      Colors.blue,
-      Colors.amber,
-      Colors.orange,
-      Colors.pink,
-      Colors.purple
-    ];
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("Dashboard"),
-          centerTitle: true,
-          backgroundColor: Colors.amber,
-        ),
-        body: Container(
-          child: Column(
-            children: [CatItems()],
-          ),
-        ));
-  }
+  State<StatefulWidget> createState() => myHomePage();
 }
 
-class CatItems extends StatelessWidget {
+class myHomePage extends State<DashBoardScreen> {
+  var result = "";
+  var no1Controller = TextEditingController();
+  var no2Controller = TextEditingController();
+
   @override
-  Widget build(BuildContext context) {
-    return Expanded(
-        flex: 2,
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: GridView.count(
-                crossAxisCount: 3,
-                mainAxisSpacing: 11,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(11),
-                        color: Colors.amber),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(11),
-                        color: Colors.amber),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(11),
-                        color: Colors.amber),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(11),
-                        color: Colors.amber),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(11),
-                        color: Colors.amber),
-                  ),
-                ],
+  Widget build(Object context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('StateFul')),
+        backgroundColor: Colors.orange,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: no1Controller,
               ),
-            ),
+              TextField(
+                controller: no2Controller,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          var no1 = int.parse(no1Controller.text.toString());
+                          var no2 = int.parse(no2Controller.text.toString());
+                          var sum = no1 + no2;
+                          result = "The sum of $no1 and $no2 is $sum";
+                          setState(() {});
+                        },
+                        child: Text('Add')),
+                    ElevatedButton(onPressed: () {}, child: Text('Sub')),
+                    ElevatedButton(onPressed: () {}, child: Text('Mul')),
+                    ElevatedButton(onPressed: () {}, child: Text('Div'))
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(21),
+                child: Text(
+                  result,
+                  style: TextStyle(fontSize: 25),
+                ),
+              )
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
